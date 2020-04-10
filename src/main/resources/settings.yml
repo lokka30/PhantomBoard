@@ -1,0 +1,21 @@
+#PhantomBoard settings.yml
+
+#Configuration options for the scoreboard itself.
+scoreboard:
+
+  #The title of the scoreboard. Above the lines.
+  title: '&a&nPhantomBoard'
+
+  #The lines on the scoreboard. Underneath the title.
+  lines:
+    - '&7PhantomBoard by lokka30'
+    - '&7You can use PAPI here :)'
+
+  #How frequently (in ticks) should the scoreboard refresh?
+  #There are 20 ticks per second.
+  #Low values will cost more performance. The default value,
+  #5 ticks, is a suitable value.
+  updatePeriod: 5
+
+#File version, do not change unless you have updated the config to such file version.
+file-version: 1
