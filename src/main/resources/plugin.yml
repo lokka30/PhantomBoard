@@ -12,7 +12,7 @@ authors:
   - extended_clip (Placeholder API)
   - bStats Team (bStats Lib)
 
-depend:
+softdepend:
   - PlaceholderAPI
 
 commands:

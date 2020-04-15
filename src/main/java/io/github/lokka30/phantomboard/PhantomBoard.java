@@ -28,7 +28,7 @@ public class PhantomBoard extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        utils = new Utils();
+        utils = new Utils(this);
         scoreboardManager = new ScoreboardManager(this);
         pluginManager = getServer().getPluginManager();
     }
@@ -41,9 +41,6 @@ public class PhantomBoard extends JavaPlugin {
         if(checkCompatibility()) {
             utils.log(LogLevel.INFO, "Loading files...");
             loadFiles();
-
-            utils.log(LogLevel.INFO, "Hooking to PlaceholderAPI...");
-            hookPlaceholderAPI();
 
             utils.log(LogLevel.INFO, "Registering events...");
             registerEvents();
@@ -69,9 +66,6 @@ public class PhantomBoard extends JavaPlugin {
     public void onDisable() {
         utils.log(LogLevel.INFO, "----+---- DISABLING BEGAN ----+----");
 
-        utils.log(LogLevel.INFO, "Unhooking PlaceholderAPI...");
-        unhookPlaceholderAPI();
-
         utils.log(LogLevel.INFO, "----+---- DISABLING COMPLETE ----+----");
     }
 
@@ -92,10 +86,9 @@ public class PhantomBoard extends JavaPlugin {
         // --- Check if the server has PAPI loaded. ---
         // Note: If PAPI isn't found, the plugin will stop loading.
         if (pluginManager.getPlugin("PlaceholderAPI") == null) {
-            utils.log(LogLevel.SEVERE, "Incompatibility found: &cPlugin 'PlaceholderAPI' is not loaded!");
-            utils.log(LogLevel.SEVERE, "This plugin depends on PlaceholderAPI to translate placeholders.");
-            utils.log(LogLevel.SEVERE, "Link to dependency: https://www.spigotmc.org/resources/placeholderapi.6245/");
-            return false;
+            utils.log(LogLevel.INFO, "&aPlaceholderAPI&7 is not installed, so placeholders will not be translated.");
+        } else {
+            utils.log(LogLevel.INFO, "&aPlaceholderAPI&7 is installed, placeholder support enabled.");
         }
 
         // --- No incompatibilities found, continue loading. ---
@@ -149,25 +142,6 @@ public class PhantomBoard extends JavaPlugin {
 
         if (data.get("file-version", 0) != utils.getRecommendedDataVersion()) {
             utils.log(LogLevel.SEVERE, "File &adata.yml&7 is out of date! Errors are likely to occur! Reset it or merge the old values to the new file.");
-        }
-    }
-
-    public void hookPlaceholderAPI() {
-        if (pluginManager.getPlugin("PlaceholderAPI") == null) {
-            utils.log(LogLevel.SEVERE, "PlaceholderAPI isn't installed - this somehow got past the compatibility check - hook task aborted.");
-            pluginManager.disablePlugin(this);
-        } else {
-            //TODO
-            utils.log(LogLevel.INFO, "Hooked to PlaceholderAPI successfuly.");
-        }
-    }
-
-    public void unhookPlaceholderAPI() {
-        if (pluginManager.getPlugin("PlaceholderAPI") == null) {
-            utils.log(LogLevel.SEVERE, "PlaceholderAPI isn't installed - unhook task aborted.");
-        } else {
-            //TODO
-            utils.log(LogLevel.INFO, "Unhooked from PlaceholderAPI successfuly.");
         }
     }
 

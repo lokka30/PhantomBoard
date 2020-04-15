@@ -35,7 +35,7 @@ public class PhantomBoardCommand implements TabExecutor {
                             } else {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-usage-console", "Usage (console): /board toggle <player>")));
                             }
-                        } else if (args.length == 2) {
+                        } else {
                             final Player target = Bukkit.getPlayer(args[1]);
 
                             if (target == null) {
@@ -46,8 +46,6 @@ public class PhantomBoardCommand implements TabExecutor {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-others", "Toggled %player%'s visibility of the scoreboard."))
                                         .replaceAll("%player%", target.getName()));
                             }
-                        } else {
-                            sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-usage", "Usage: /board toggle [player]")));
                         }
                     } else {
                         sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
@@ -69,7 +67,7 @@ public class PhantomBoardCommand implements TabExecutor {
                             } else {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-usage-console", "Usage (console): /board on <player>")));
                             }
-                        } else if (args.length == 2) {
+                        } else {
                             final Player target = Bukkit.getPlayer(args[1]);
 
                             if (target == null) {
@@ -89,8 +87,6 @@ public class PhantomBoardCommand implements TabExecutor {
                                             .replaceAll("%player%", target.getName()));
                                 }
                             }
-                        } else {
-                            sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-usage", "Usage: /board on [player]")));
                         }
                     } else {
                         sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
@@ -112,7 +108,7 @@ public class PhantomBoardCommand implements TabExecutor {
                             } else {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-usage-console", "Usage (console): /board off <player>")));
                             }
-                        } else if (args.length == 2) {
+                        } else {
                             final Player target = Bukkit.getPlayer(args[1]);
 
                             if (target == null) {
@@ -132,8 +128,6 @@ public class PhantomBoardCommand implements TabExecutor {
                                             .replaceAll("%sender%", sender.getName()));
                                 }
                             }
-                        } else {
-                            sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-usage", "Usage: /board off [player]")));
                         }
                     } else {
                         sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));

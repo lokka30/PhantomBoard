@@ -38,3 +38,11 @@ Changes:
 - ScoreboardManager: added check if line is over the limit of 40 chars
 - Utils.log: exception explained better
 - Utils.log: added prefix to log messages
+
+1.1.3-SNAPSHOT:
+notes: []
+changes:
+- Utils.colorizeAndTranslate method now in use
+- PAPI hook introduced
+- PAPI is no longer required
+- Fixed prefix having the wrong plugin name. yes, I have put the wrong plugin name somewhere twice now :|

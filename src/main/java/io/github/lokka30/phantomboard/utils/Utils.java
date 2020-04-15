@@ -1,5 +1,7 @@
 package io.github.lokka30.phantomboard.utils;
 
+import io.github.lokka30.phantomboard.PhantomBoard;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -7,6 +9,12 @@ import org.bukkit.entity.Player;
 import java.util.logging.Logger;
 
 public class Utils {
+
+    private PhantomBoard instance;
+
+    public Utils(final PhantomBoard instance) {
+        this.instance = instance;
+    }
 
     public String getRecommendedServerVersion() {
         return "1.15";
@@ -30,12 +38,15 @@ public class Utils {
 
     @SuppressWarnings("unused")
     public String colorizeAndTranslate(final String msg, final Player player) {
-        //TODO translate PAPI placeholders.
-        return colorize(msg);
+        if (instance.getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            return colorize(msg);
+        } else {
+            return colorize(PlaceholderAPI.setPlaceholders(player, msg));
+        }
     }
 
     public void log(final LogLevel level, String msg) {
-        msg = colorize("&aPhantomEconomy: &7" + msg);
+        msg = colorize("&aPhantomBoard: &7" + msg);
         final Logger logger = Bukkit.getLogger();
 
         switch (level) {
