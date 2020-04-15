@@ -3,21 +3,24 @@
 #Configuration options for the scoreboard itself.
 scoreboard:
 
-  #The title of the scoreboard. Above the lines.
+  #The title of the scoreboard. This is displayed above the lines (at the top of the scoreboard).
+  #Max chars: No idea, probably 40 or under. Never seen a scoreboard with that long of a title though.
   title: '&a&nPhantomBoard'
 
-  #The lines on the scoreboard. Underneath the title.
+  #The lines on the scoreboard. This is displayed underneath the titles.
+  #Max chars: 40
   lines:
     - '&7PhantomBoard by lokka30'
     - '&7You can use PAPI here :)'
+    - '&7Up to 40 characters per line!'
 
   #How frequently (in ticks) should the plugin cycle to the next online player and refresh their scoreboard?
   #Higher = refreshes faster per player, but at a cost of performance
   #Lower = refreshes slower per player, but increases performance
   #Therefore, low amount of players on the server = use a higher value - high amount of players = use a lower value.
   #There are 20 ticks per second, so an updatePeriod of 2 ticks will cycle through 10 players per second and refresh their scoreboard.
-  #The default value should be a good balance between refresh speed and performance.
+  #The default value of 2 should be a good balance between refresh speed and performance.
   updatePeriod: 2
 
 #File version, do not change unless you have updated the config to such file version.
-file-version: 1
+file-version: 2

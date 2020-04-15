@@ -13,11 +13,11 @@ public class Utils {
     }
 
     public int getRecommendedSettingsVersion() {
-        return 1;
+        return 2;
     }
 
     public int getRecommendedMessagesVersion() {
-        return 1;
+        return 2;
     }
 
     public int getRecommendedDataVersion() {
@@ -35,7 +35,7 @@ public class Utils {
     }
 
     public void log(final LogLevel level, String msg) {
-        msg = colorize("&7" + msg);
+        msg = colorize("&aPhantomEconomy: &7" + msg);
         final Logger logger = Bukkit.getLogger();
 
         switch (level) {
@@ -49,7 +49,7 @@ public class Utils {
                 logger.severe(msg);
                 break;
             default:
-                throw new IllegalStateException("Unknown LogLevel " + level.toString() + ". Message: " + msg);
+                throw new IllegalStateException("LogLevel " + level.toString() + " has not been implemented properly! Supplied message: " + msg);
         }
     }
 }

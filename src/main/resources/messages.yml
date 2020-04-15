@@ -5,6 +5,7 @@ player-not-online: '&a&lPhantomBoard: &r%player%&7 isn''t online.'
 reload-done: '&a&lPhantomBoard: &7... Reload done.'
 reload-started: '&a&lPhantomBoard: &7Reload started ...'
 reload-usage: '&a&lPhantomBoard: &7Usage: &a/board reload'
+scoreboard-over-40-chars: '&c&nLine is over the limit of 40 chars!'
 set-off-by: '&a&lPhantomBoard: &r%sender%&7 made your board hidden.'
 set-off-others: '&a&lPhantomBoard: &7The board is now hidden to &r%player%&7.'
 set-off-others-already: '&a&lPhantomBoard: &r%player%&7''s board is already hidden.'
@@ -26,4 +27,4 @@ toggle-self: '&a&lPhantomBoard: &7Toggled your visibility of the scoreboard.'
 usage: '&a&lPhantomBoard: &7Usage: &a/board <toggle/on/off/info/reload>'
 
 #File version, do not change unless you have updated the config to such file version.
-file-version: 1
+file-version: 2

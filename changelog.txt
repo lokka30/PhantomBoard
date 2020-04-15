@@ -21,7 +21,6 @@
 1.1.1-SNAPSHOT:
 Notes:
 - File Changes: messages.yml
-
 Changes:
 - Changed PAPI unhook message
 - Added PAPI dependency in plugin.yml
@@ -30,3 +29,12 @@ Changes:
  - Fixed scoreboard not working properly
 - Fixed data folder being named 'PhantomEconomy' instead of 'PhantomBoard'
 - Changed cycle period to 1 tick
+
+1.1.2-SNAPSHOT:
+Notes:
+- File Changes: messages.yml, settings.yml
+Changes:
+- ScoreboardManager: removed redundant initialiser
+- ScoreboardManager: added check if line is over the limit of 40 chars
+- Utils.log: exception explained better
+- Utils.log: added prefix to log messages

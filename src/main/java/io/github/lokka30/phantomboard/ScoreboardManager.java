@@ -105,7 +105,7 @@ public class ScoreboardManager {
                 //Before starting, check if there are no players on the server.
                 //Also check if the plugin is refreshing the online and/or hidden players.
                 if (!Bukkit.getOnlinePlayers().isEmpty() && !isRefreshing) {
-                    Player player = null;
+                    Player player;
 
                     if (index > onlinePlayers.size() - 1 || index > Bukkit.getOnlinePlayers().size() - 1) {
                         index = 0;
@@ -136,7 +136,11 @@ public class ScoreboardManager {
                         //Set each line.
                         int currentLine = lines.size();
                         for (String line : lines) {
-                            board.set(instance.getUtils().colorizeAndTranslate(line, player), currentLine);
+                            if (line.length() > 40) {
+                                board.set(instance.getUtils().colorize(instance.getMessages().get("scoreboard-over-40-chars", "&c&nLine is over the limit of 40 chars!")), currentLine);
+                            } else {
+                                board.set(instance.getUtils().colorizeAndTranslate(line, player), currentLine);
+                            }
                             currentLine--;
                         }
                     }
