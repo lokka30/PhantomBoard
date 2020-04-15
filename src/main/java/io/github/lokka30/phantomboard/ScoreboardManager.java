@@ -49,10 +49,7 @@ public class ScoreboardManager {
     public void updateOnlinePlayers() {
         isRefreshing = true;
         onlinePlayers.clear();
-
-        for(Player player : Bukkit.getOnlinePlayers()) {
-            onlinePlayers.add(player);
-        }
+        onlinePlayers.addAll(Bukkit.getOnlinePlayers());
         isRefreshing = false;
     }
 
@@ -89,17 +86,11 @@ public class ScoreboardManager {
 
     public void setHidden(final UUID uuid, final boolean hidden) {
         if (hidden) {
-            if (hiddenPlayers.contains(uuid)) {
-                //Tried to set hidden but the player has already hidden the scoreboard. Just do nothing.
-            } else {
+            if (!hiddenPlayers.contains(uuid)) {
                 hiddenPlayers.add(uuid);
             }
         } else {
-            if (hiddenPlayers.contains(uuid)) {
-                hiddenPlayers.remove(uuid);
-            } else {
-                //Tried to set hidden but the player has already shown the scoreboard. Just do nothing.
-            }
+            hiddenPlayers.remove(uuid);
         }
     }
 
@@ -114,23 +105,33 @@ public class ScoreboardManager {
                 //Before starting, check if there are no players on the server.
                 //Also check if the plugin is refreshing the online and/or hidden players.
                 if (!Bukkit.getOnlinePlayers().isEmpty() && !isRefreshing) {
-                    Player player;
+                    Player player = null;
 
-                    if (index > Bukkit.getOnlinePlayers().size()) {
+                    if (index > onlinePlayers.size() - 1 || index > Bukkit.getOnlinePlayers().size() - 1) {
                         index = 0;
+                        return;
                     }
 
+                    //The player at hand
                     player = onlinePlayers.get(index);
+
+                    //Set the title.
+                    title = instance.getUtils().colorizeAndTranslate(title, player);
+
+                    //Set up the scoreboard
+                    BPlayerBoard board = Netherboard.instance().createBoard(player, "PhantomBoard");
 
                     //If the player has toggled the scoreboard off, then just continue
                     if (hiddenPlayers.contains(player.getUniqueId())) {
-                        index++;
+                        final BPlayerBoard currentBoard = Netherboard.instance().getBoard(player);
+                        if (currentBoard != null) {
+                            if (currentBoard.getName().equals(title)) {
+                                currentBoard.delete();
+                            }
+                        }
                     } else {
-                        //Set up the scoreboard
-                        BPlayerBoard board = Netherboard.instance().createBoard(player, "PhantomBoard");
-
                         //Set the title
-                        board.setName(instance.getUtils().colorizeAndTranslate(title, player));
+                        board.setName(title);
 
                         //Set each line.
                         int currentLine = lines.size();
@@ -139,6 +140,7 @@ public class ScoreboardManager {
                             currentLine--;
                         }
                     }
+                    index++;
                 }
             }
         }.runTaskTimer(instance, 0L, period);

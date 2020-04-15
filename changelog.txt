@@ -17,3 +17,16 @@
 - Completed current stage of ScoreboardManager
 - Added Utils.colorizeAndTranslate method to be used in later versions when PAPI is actually added
 - Added /phantomboard <toggle [player]/on [player]/off [player]/info/reload>
+
+1.1.1-SNAPSHOT:
+Notes:
+- File Changes: messages.yml
+
+Changes:
+- Changed PAPI unhook message
+- Added PAPI dependency in plugin.yml
+- Fixed PAPI compatibility method checking for Vault instead of PAPI being installed
+- Modifications to Scoreboard task
+ - Fixed scoreboard not working properly
+- Fixed data folder being named 'PhantomEconomy' instead of 'PhantomBoard'
+- Changed cycle period to 1 tick

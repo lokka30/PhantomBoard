@@ -23,6 +23,7 @@ toggle-usage: '&a&lPhantomBoard: &7Usage: /board toggle [player]'
 toggle-usage-console: '&a&lPhantomBoard: &7Usage (console): &a/board toggle <player>'
 toggle-others: '&a&lPhantomBoard: &7Toggled &r%player%&7''s visibility of the scoreboard.'
 toggle-self: '&a&lPhantomBoard: &7Toggled your visibility of the scoreboard.'
+usage: '&a&lPhantomBoard: &7Usage: &a/board <toggle/on/off/info/reload>'
 
 #File version, do not change unless you have updated the config to such file version.
 file-version: 1

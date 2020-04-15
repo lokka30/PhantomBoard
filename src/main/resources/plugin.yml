@@ -3,14 +3,17 @@ version: ${project.version}
 api-version: '1.15'
 description: ${project.description}
 main: io.github.lokka30.phantomboard.PhantomBoard
-load: POSTWORLD
 prefix: 'PhantomBoard'
+
 authors:
   - lokka30 (PhantomBoard Author)
   - MinusKube (Netherboard API)
   - JavaFactory (LightningStorage Lib)
   - extended_clip (Placeholder API)
   - bStats Team (bStats Lib)
+
+depend:
+  - PlaceholderAPI
 
 commands:
   phantomboard:

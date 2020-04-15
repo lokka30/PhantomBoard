@@ -91,7 +91,7 @@ public class PhantomBoard extends JavaPlugin {
 
         // --- Check if the server has PAPI loaded. ---
         // Note: If PAPI isn't found, the plugin will stop loading.
-        if (pluginManager.getPlugin("Vault") == null) {
+        if (pluginManager.getPlugin("PlaceholderAPI") == null) {
             utils.log(LogLevel.SEVERE, "Incompatibility found: &cPlugin 'PlaceholderAPI' is not loaded!");
             utils.log(LogLevel.SEVERE, "This plugin depends on PlaceholderAPI to translate placeholders.");
             utils.log(LogLevel.SEVERE, "Link to dependency: https://www.spigotmc.org/resources/placeholderapi.6245/");
@@ -104,7 +104,7 @@ public class PhantomBoard extends JavaPlugin {
 
     public void loadFiles() {
         //Tell LightningStorage to start its business.
-        final String path = "plugins/PhantomEconomy/";
+        final String path = "plugins/PhantomBoard/";
         settings = LightningBuilder
                 .fromFile(new File(path + "settings"))
                 .addInputStreamFromResource("settings.yml")
@@ -164,7 +164,7 @@ public class PhantomBoard extends JavaPlugin {
 
     public void unhookPlaceholderAPI() {
         if (pluginManager.getPlugin("PlaceholderAPI") == null) {
-            utils.log(LogLevel.SEVERE, "PlaceholderAPI isn't installed - this somehow got past the compatibility check - hook task aborted.");
+            utils.log(LogLevel.SEVERE, "PlaceholderAPI isn't installed - unhook task aborted.");
         } else {
             //TODO
             utils.log(LogLevel.INFO, "Unhooked from PlaceholderAPI successfuly.");

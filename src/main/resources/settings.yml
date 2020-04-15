@@ -12,10 +12,12 @@ scoreboard:
     - '&7You can use PAPI here :)'
 
   #How frequently (in ticks) should the plugin cycle to the next online player and refresh their scoreboard?
-  #There are 20 ticks per second.
-  #Low values will cost more performance. The default value, 5 ticks, is ideal for most community sizes.
-  #If you have a ton of players online, you can decrease this value so players will see their scoreboard updated quicker.
-  updatePeriod: 5
+  #Higher = refreshes faster per player, but at a cost of performance
+  #Lower = refreshes slower per player, but increases performance
+  #Therefore, low amount of players on the server = use a higher value - high amount of players = use a lower value.
+  #There are 20 ticks per second, so an updatePeriod of 2 ticks will cycle through 10 players per second and refresh their scoreboard.
+  #The default value should be a good balance between refresh speed and performance.
+  updatePeriod: 2
 
 #File version, do not change unless you have updated the config to such file version.
 file-version: 1
