@@ -52,3 +52,9 @@ notes: []
 changes:
 - pom.xml: Removed papi relocation
 - ScoreboardManager: 40 char limit enforced on translated message, not untranslated message
+
+1.1.5-SNAPSHOT:
+notes: []
+changes:
+- .gitignore: added /target/ and .gitignore
+- settings: changed default period to 3, added comment

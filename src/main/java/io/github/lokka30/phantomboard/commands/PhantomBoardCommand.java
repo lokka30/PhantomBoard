@@ -200,6 +200,9 @@ public class PhantomBoardCommand implements TabExecutor {
                         sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
                     }
                     break;
+                default:
+                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("usage", "Usage: /board <toggle/on/off/info/reload>")));
+                    break;
             }
         } else {
             sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("usage", "Usage: /board <toggle/on/off/info/reload>")));
