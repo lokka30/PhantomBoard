@@ -2,15 +2,18 @@ package io.github.lokka30.phantomboard;
 
 import de.leonhard.storage.LightningBuilder;
 import de.leonhard.storage.internal.FlatFile;
+import io.github.lokka30.phantomboard.commands.PhantomBoardCommand;
+import io.github.lokka30.phantomboard.listeners.PlayerJoinListener;
+import io.github.lokka30.phantomboard.listeners.PlayerQuitListener;
 import io.github.lokka30.phantomboard.utils.LogLevel;
+import io.github.lokka30.phantomboard.utils.UpdateChecker;
 import io.github.lokka30.phantomboard.utils.Utils;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Objects;
 
 public class PhantomBoard extends JavaPlugin {
 
@@ -52,7 +55,7 @@ public class PhantomBoard extends JavaPlugin {
             new Metrics(this, 7072);
 
             utils.log(LogLevel.INFO, "Starting scoreboard task...");
-            scoreboardManager.init();
+            scoreboardManager.load();
 
             utils.log(LogLevel.INFO, "----+---- ENABLING COMPLETE ----+----");
 
@@ -169,15 +172,32 @@ public class PhantomBoard extends JavaPlugin {
     }
 
     public void registerEvents() {
-        //TODO
+        pluginManager.registerEvents(new PlayerJoinListener(this), this);
+        pluginManager.registerEvents(new PlayerQuitListener(this), this);
     }
 
     public void registerCommands() {
-        //TODO
+        Objects.requireNonNull(getCommand("phantomboard")).setExecutor(new PhantomBoardCommand(this));
     }
 
     public void checkUpdates() {
-        //TODO
+        //TODO remove this when the update checker is properly implemented.
+        if (!getSettings().get("update-checker-bypass", false)) {
+            return;
+        }
+
+        if (getSettings().get("use-update-checker", true)) {
+            utils.log(LogLevel.INFO, "&aUpdate Checker &8- &7Starting update check...");
+
+            //TODO change resource ID once uploaded to spigot
+            new UpdateChecker(this, 12345).getVersion(version -> {
+                if (getDescription().getVersion().equalsIgnoreCase(version)) {
+                    utils.log(LogLevel.INFO, "&aUpdate Checker &8- &7You're using the latest version.");
+                } else {
+                    utils.log(LogLevel.WARNING, "&aUpdate Checker &8- &7There's a new update available. Head to the SpigotMC resource page to download it.");
+                }
+            });
+        }
     }
 
     public FlatFile getSettings() {

@@ -11,10 +11,10 @@ scoreboard:
     - '&7PhantomBoard by lokka30'
     - '&7You can use PAPI here :)'
 
-  #How frequently (in ticks) should the scoreboard refresh?
+  #How frequently (in ticks) should the plugin cycle to the next online player and refresh their scoreboard?
   #There are 20 ticks per second.
-  #Low values will cost more performance. The default value,
-  #5 ticks, is a suitable value.
+  #Low values will cost more performance. The default value, 5 ticks, is ideal for most community sizes.
+  #If you have a ton of players online, you can decrease this value so players will see their scoreboard updated quicker.
   updatePeriod: 5
 
 #File version, do not change unless you have updated the config to such file version.

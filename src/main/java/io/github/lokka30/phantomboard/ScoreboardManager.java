@@ -1,10 +1,15 @@
 package io.github.lokka30.phantomboard;
 
+import fr.minuskube.netherboard.Netherboard;
+import fr.minuskube.netherboard.bukkit.BPlayerBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 public class ScoreboardManager {
 
@@ -22,8 +27,10 @@ public class ScoreboardManager {
     private String title;
     private List<String> lines;
     private int period;
+    private boolean isRunning = false;
+    private boolean isRefreshing = false;
 
-    public void init() {
+    public void load() {
         onlinePlayers = new ArrayList<>();
         updateOnlinePlayers();
 
@@ -34,34 +41,65 @@ public class ScoreboardManager {
         lines = instance.getSettings().get("scoreboard.lines", Collections.singletonList(instance.getUtils().colorize("&7PhantomBoard by lokka30")));
         period = instance.getSettings().get("scoreboard.updatePeriod", 5);
 
-        scheduleTask();
+        if (!isRunning) {
+            scheduleTask();
+        }
     }
 
     public void updateOnlinePlayers() {
+        isRefreshing = true;
         onlinePlayers.clear();
 
         for(Player player : Bukkit.getOnlinePlayers()) {
             onlinePlayers.add(player);
         }
+        isRefreshing = false;
     }
 
     public void updateHiddenPlayers() {
-        for(Player player : onlinePlayers) {
+        isRefreshing = true;
+        for (Player player : onlinePlayers) {
             final UUID uuid = player.getUniqueId();
 
-            if(instance.getData().get("players." + uuid.toString() + ".hidden", false)) {
+            if (instance.getData().get("players." + uuid.toString() + ".hidden", false)) {
                 hiddenPlayers.add(uuid);
             }
         }
+        isRefreshing = false;
+    }
+
+    public void updateOnlineAndHiddenPlayers() {
+        updateOnlinePlayers();
+        updateHiddenPlayers();
     }
 
     public void toggleHidden(final UUID uuid) {
-        if(hiddenPlayers.contains(uuid)) {
+        if (hiddenPlayers.contains(uuid)) {
             //The player has hidden the scoreboard. Show the scoreboard.
             hiddenPlayers.remove(uuid);
         } else {
             //The player has shown the scoreboard. Hide the scoreboard.
             hiddenPlayers.add(uuid);
+        }
+    }
+
+    public boolean isHidden(final UUID uuid) {
+        return hiddenPlayers.contains(uuid);
+    }
+
+    public void setHidden(final UUID uuid, final boolean hidden) {
+        if (hidden) {
+            if (hiddenPlayers.contains(uuid)) {
+                //Tried to set hidden but the player has already hidden the scoreboard. Just do nothing.
+            } else {
+                hiddenPlayers.add(uuid);
+            }
+        } else {
+            if (hiddenPlayers.contains(uuid)) {
+                hiddenPlayers.remove(uuid);
+            } else {
+                //Tried to set hidden but the player has already shown the scoreboard. Just do nothing.
+            }
         }
     }
 
@@ -71,21 +109,35 @@ public class ScoreboardManager {
 
             @Override
             public void run() {
+                isRunning = true;
 
                 //Before starting, check if there are no players on the server.
-                if(!Bukkit.getOnlinePlayers().isEmpty()) {
+                //Also check if the plugin is refreshing the online and/or hidden players.
+                if (!Bukkit.getOnlinePlayers().isEmpty() && !isRefreshing) {
                     Player player;
 
-                    if(index > Bukkit.getOnlinePlayers().size()) {
+                    if (index > Bukkit.getOnlinePlayers().size()) {
                         index = 0;
                     }
 
                     player = onlinePlayers.get(index);
 
-                    if(hiddenPlayers.contains(player.getUniqueId())) {
-                       index++;
+                    //If the player has toggled the scoreboard off, then just continue
+                    if (hiddenPlayers.contains(player.getUniqueId())) {
+                        index++;
                     } else {
-                        //TODO
+                        //Set up the scoreboard
+                        BPlayerBoard board = Netherboard.instance().createBoard(player, "PhantomBoard");
+
+                        //Set the title
+                        board.setName(instance.getUtils().colorizeAndTranslate(title, player));
+
+                        //Set each line.
+                        int currentLine = lines.size();
+                        for (String line : lines) {
+                            board.set(instance.getUtils().colorizeAndTranslate(line, player), currentLine);
+                            currentLine--;
+                        }
                     }
                 }
             }

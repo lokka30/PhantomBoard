@@ -1,0 +1,30 @@
+name: PhantomBoard
+version: ${project.version}
+api-version: '1.15'
+description: ${project.description}
+main: io.github.lokka30.phantomboard.PhantomBoard
+load: POSTWORLD
+prefix: 'PhantomBoard'
+authors:
+  - lokka30 (PhantomBoard Author)
+  - MinusKube (Netherboard API)
+  - JavaFactory (LightningStorage Lib)
+  - extended_clip (Placeholder API)
+  - bStats Team (bStats Lib)
+
+commands:
+  phantomboard:
+    description: Manage the Scoreboard.
+    aliases: [sb, pboard, board, scoreboard]
+    usage: /<command> <toggle/on/off/info/reload>
+
+permissions:
+  phantomboard.view:
+    description: Ability to see the scoreboard.
+    default: true
+  phantomboard.toggle:
+    description: Ability to change the players visibility of the board.
+    default: true
+  phantomboard.reload:
+    description: Ability to reload the scoreboard.
+    default: op

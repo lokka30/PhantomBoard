@@ -1,0 +1,19 @@
+1.0-SNAPSHOT:
+- PhantomBoard class
+- ScoreboardManager class
+- LogLevel class
+- Utils class
+- settings file
+
+1.1.0-SNAPSHOT:
+- Notes:
+ - Added extra section to version number for build version
+ - Plugin is now ready for testing.
+- Added NetherBoard dependency (built in jar).
+- Added plugin.yml
+- Added data.json
+- Added messages.yml
+- Added tab complete to commands
+- Completed current stage of ScoreboardManager
+- Added Utils.colorizeAndTranslate method to be used in later versions when PAPI is actually added
+- Added /phantomboard <toggle [player]/on [player]/off [player]/info/reload>

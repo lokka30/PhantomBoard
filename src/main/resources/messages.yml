@@ -1,0 +1,28 @@
+#PhantomBoard messages.yml
+
+no-permission: '&a&lPhantomBoard: &7You don''t have access to that.'
+player-not-online: '&a&lPhantomBoard: &r%player%&7 isn''t online.'
+reload-done: '&a&lPhantomBoard: &7... Reload done.'
+reload-started: '&a&lPhantomBoard: &7Reload started ...'
+reload-usage: '&a&lPhantomBoard: &7Usage: &a/board reload'
+set-off-by: '&a&lPhantomBoard: &r%sender%&7 made your board hidden.'
+set-off-others: '&a&lPhantomBoard: &7The board is now hidden to &r%player%&7.'
+set-off-others-already: '&a&lPhantomBoard: &r%player%&7''s board is already hidden.'
+set-off-self: '&a&lPhantomBoard: &7The board is now hidden.'
+set-off-self-already: '&a&lPhantomBoard: &7The board is already hidden.'
+set-off-usage: '&a&lPhantomBoard: &7Usage: &a/board off <player>'
+set-off-usage-console: '&a&lPhantomBoard: &7Usage (console): &a/board off <player>'
+set-on-by: '&a&lPhantomBoard: &r%sender%&7 made your board visible.'
+set-on-others: '&a&lPhantomBoard: &7The board is now visible to &r%player%&7.'
+set-on-others-already: '&a&lPhantomBoard: &r%player%&7''s board is already visible.'
+set-on-self: '&a&lPhantomBoard: &7The board is now visible.'
+set-on-self-already: '&a&lPhantomBoard: &7The board is already visible.'
+set-on-usage: '&a&lPhantomBoard: &7Usage: &a/board on <player>'
+set-on-usage-console: '&a&lPhantomBoard: &7Usage (console): &a/board on <player>'
+toggle-usage: '&a&lPhantomBoard: &7Usage: /board toggle [player]'
+toggle-usage-console: '&a&lPhantomBoard: &7Usage (console): &a/board toggle <player>'
+toggle-others: '&a&lPhantomBoard: &7Toggled &r%player%&7''s visibility of the scoreboard.'
+toggle-self: '&a&lPhantomBoard: &7Toggled your visibility of the scoreboard.'
+
+#File version, do not change unless you have updated the config to such file version.
+file-version: 1
