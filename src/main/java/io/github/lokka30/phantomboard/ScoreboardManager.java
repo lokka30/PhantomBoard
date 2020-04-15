@@ -136,10 +136,12 @@ public class ScoreboardManager {
                         //Set each line.
                         int currentLine = lines.size();
                         for (String line : lines) {
+                            line = instance.getUtils().colorizeAndTranslate(line, player);
+
                             if (line.length() > 40) {
                                 board.set(instance.getUtils().colorize(instance.getMessages().get("scoreboard-over-40-chars", "&c&nLine is over the limit of 40 chars!")), currentLine);
                             } else {
-                                board.set(instance.getUtils().colorizeAndTranslate(line, player), currentLine);
+                                board.set(line, currentLine);
                             }
                             currentLine--;
                         }

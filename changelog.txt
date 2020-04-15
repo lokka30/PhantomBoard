@@ -46,3 +46,9 @@ changes:
 - PAPI hook introduced
 - PAPI is no longer required
 - Fixed prefix having the wrong plugin name. yes, I have put the wrong plugin name somewhere twice now :|
+
+1.1.4-SNAPSHOT:
+notes: []
+changes:
+- pom.xml: Removed papi relocation
+- ScoreboardManager: 40 char limit enforced on translated message, not untranslated message

@@ -6,7 +6,7 @@
 
     <groupId>io.github.lokka30</groupId>
     <artifactId>PhantomBoard</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
+    <version>1.1.4-SNAPSHOT</version>
 
     <name>PhantomBoard</name>
     <description>A simple PlaceholderAPI scoreboard plugin</description>
@@ -42,10 +42,6 @@
                         <relocation>
                             <pattern>de.leonhard.storage</pattern>
                             <shadedPattern>io.github.lokka30.phantomboard.lightningstorage</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>me.clip</pattern>
-                            <shadedPattern>io.github.lokka30.phantomboard.placeholderapi</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>fr.minuskube</pattern>
