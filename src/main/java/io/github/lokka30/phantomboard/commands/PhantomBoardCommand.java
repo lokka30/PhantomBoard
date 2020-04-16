@@ -181,14 +181,14 @@ public class PhantomBoardCommand implements TabExecutor {
                         }
 
                         sender.sendMessage(" ");
-                        sender.sendMessage("&8&m>>&a&l General Information");
-                        sender.sendMessage(instance.getUtils().colorize("&7This server is running &a&lPhantomBoard &av" + instance.getDescription().getVersion() + "&7."));
+                        sender.sendMessage(instance.getUtils().colorize("&8♦ &a&l General Information"));
+                        sender.sendMessage(instance.getUtils().colorize("&7Server is running &aPhantomBoard v" + instance.getDescription().getVersion() + "&7."));
                         sender.sendMessage(instance.getUtils().colorize("&7Contributors:"));
                         for (String contributor : instance.getDescription().getAuthors()) {
                             sender.sendMessage(instance.getUtils().colorize("&8 - &7" + contributor));
                         }
                         sender.sendMessage(" ");
-                        sender.sendMessage("&8&m>>&a&l Compatibility Check");
+                        sender.sendMessage(instance.getUtils().colorize("&8♦ &a&l Compatibility Check"));
                         sender.sendMessage(instance.getUtils().colorize("&7Running supported server version: " + compatibleServerVersionString));
                         sender.sendMessage(instance.getUtils().colorize("&7Running PAPI: " + runningPAPIString));
                         sender.sendMessage(instance.getUtils().colorize("&7settings.yml version: " + settingsVersionString));

@@ -67,3 +67,24 @@ changes:
 - added permission 'phantomboard.toggle.others' to specify a player in ``/phantomboard toggle/on/off [player]`. given to operators by default
 - added permission 'phantomboard.view' to view the scoreboard. given to all players by default
   - players need this permission to toggle (otherwise they would toggle a scoreboard they can't even see??)
+
+1.2-SNAPSHOT:
+known issues:
+- flickering upon reloading the scoreboard.
+ - takes 10-20 seconds to ease out
+- can't have two lines of the same content
+ - you can put extra colour codes in as a temporary fix
+
+notes:
+- updated settings.yml file to version 4
+- messages.yml was missing a line but it wasn't important. update if you want. file version not changed.
+
+changes:
+- redone parts of scoreboard manager
+ - it now refreshes all players per period, rather than one player per period.
+ - default value now set to 20 ticks per update.
+  - updated config comments
+ - shrunk the code a bit. removed some useless stuff.
+ - it now saves the status if you hid the scoreboard over logins and restarts
+- fixed 'info' subcommand's incorrect header formatting
+- fixed '/board info' usage message not present in messages.yml.

@@ -15,6 +15,6 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onJoin(final PlayerJoinEvent e) {
-        instance.getScoreboardManager().updateOnlineAndHiddenPlayers();
+        instance.getScoreboardManager().updateHiddenPlayers();
     }
 }

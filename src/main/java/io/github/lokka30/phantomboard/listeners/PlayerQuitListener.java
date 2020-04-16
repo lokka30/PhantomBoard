@@ -15,6 +15,6 @@ public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onQuit(final PlayerQuitEvent e) {
-        instance.getScoreboardManager().updateOnlineAndHiddenPlayers();
+        instance.getScoreboardManager().updateHiddenPlayers();
     }
 }

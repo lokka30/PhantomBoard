@@ -1,5 +1,6 @@
 #PhantomBoard messages.yml
 
+info-usage: '&a&lPhantomBoard: &7Usage: &a/board info'
 no-permission: '&a&lPhantomBoard: &7You don''t have access to that.'
 player-not-online: '&a&lPhantomBoard: &r%player%&7 isn''t online.'
 reload-done: '&a&lPhantomBoard: &7... Reload done.'
