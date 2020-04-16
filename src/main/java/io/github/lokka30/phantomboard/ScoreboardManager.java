@@ -122,7 +122,7 @@ public class ScoreboardManager {
                     BPlayerBoard board = Netherboard.instance().createBoard(player, "PhantomBoard");
 
                     //If the player has toggled the scoreboard off, then just continue
-                    if (hiddenPlayers.contains(player.getUniqueId())) {
+                    if (hiddenPlayers.contains(player.getUniqueId()) || !player.hasPermission("phantomboard.view")) {
                         final BPlayerBoard currentBoard = Netherboard.instance().getBoard(player);
                         if (currentBoard != null) {
                             if (currentBoard.getName().equals(title)) {

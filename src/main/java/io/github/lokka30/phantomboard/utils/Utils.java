@@ -21,7 +21,7 @@ public class Utils {
     }
 
     public int getRecommendedSettingsVersion() {
-        return 2;
+        return 3;
     }
 
     public int getRecommendedMessagesVersion() {

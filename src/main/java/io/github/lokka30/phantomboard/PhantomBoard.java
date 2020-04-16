@@ -155,16 +155,10 @@ public class PhantomBoard extends JavaPlugin {
     }
 
     public void checkUpdates() {
-        //TODO remove this when the update checker is properly implemented.
-        if (!getSettings().get("update-checker-bypass", false)) {
-            return;
-        }
-
         if (getSettings().get("use-update-checker", true)) {
             utils.log(LogLevel.INFO, "&aUpdate Checker &8- &7Starting update check...");
 
-            //TODO change resource ID once uploaded to spigot
-            new UpdateChecker(this, 12345).getVersion(version -> {
+            new UpdateChecker(this, 77437).getVersion(version -> {
                 if (getDescription().getVersion().equalsIgnoreCase(version)) {
                     utils.log(LogLevel.INFO, "&aUpdate Checker &8- &7You're using the latest version.");
                 } else {

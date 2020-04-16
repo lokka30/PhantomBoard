@@ -26,8 +26,11 @@ permissions:
     description: Ability to see the scoreboard.
     default: true
   phantomboard.toggle:
-    description: Ability to change the players visibility of the board.
+    description: Ability to change your visibility of the board.
     default: true
+  phantomboard.toggle.others:
+    description: Ability to change other players visibility of the scoreboard
+    default: op
   phantomboard.reload:
     description: Ability to reload the scoreboard.
     default: op

@@ -26,7 +26,7 @@ public class PhantomBoardCommand implements TabExecutor {
         if (args.length == 1 || args.length == 2) {
             switch (args[0].toLowerCase()) {
                 case "toggle":
-                    if (sender.hasPermission("phantomboard.toggle")) {
+                    if (sender.hasPermission("phantomboard.toggle") && sender.hasPermission("phantomboard.view")) {
                         if (args.length == 1) {
                             if (sender instanceof Player) {
                                 final Player player = (Player) sender;
@@ -36,15 +36,19 @@ public class PhantomBoardCommand implements TabExecutor {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-usage-console", "Usage (console): /board toggle <player>")));
                             }
                         } else {
-                            final Player target = Bukkit.getPlayer(args[1]);
+                            if (sender.hasPermission("phantomboard.toggle.others")) {
+                                final Player target = Bukkit.getPlayer(args[1]);
 
-                            if (target == null) {
-                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
-                                        .replaceAll("%player%", args[1]));
+                                if (target == null) {
+                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
+                                            .replaceAll("%player%", args[1]));
+                                } else {
+                                    instance.getScoreboardManager().toggleHidden(target.getUniqueId());
+                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-others", "Toggled %player%'s visibility of the scoreboard."))
+                                            .replaceAll("%player%", target.getName()));
+                                }
                             } else {
-                                instance.getScoreboardManager().toggleHidden(target.getUniqueId());
-                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("toggle-others", "Toggled %player%'s visibility of the scoreboard."))
-                                        .replaceAll("%player%", target.getName()));
+                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
                             }
                         }
                     } else {
@@ -52,7 +56,7 @@ public class PhantomBoardCommand implements TabExecutor {
                     }
                     break;
                 case "on":
-                    if (sender.hasPermission("phantomboard.toggle")) {
+                    if (sender.hasPermission("phantomboard.toggle") && sender.hasPermission("phantomboard.view")) {
                         if (args.length == 1) {
                             if (sender instanceof Player) {
                                 final Player player = (Player) sender;
@@ -68,24 +72,28 @@ public class PhantomBoardCommand implements TabExecutor {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-usage-console", "Usage (console): /board on <player>")));
                             }
                         } else {
-                            final Player target = Bukkit.getPlayer(args[1]);
+                            if (sender.hasPermission("phantomboard.toggle.others")) {
+                                final Player target = Bukkit.getPlayer(args[1]);
 
-                            if (target == null) {
-                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
-                                        .replaceAll("%player%", args[1]));
-                            } else {
-                                final UUID uuid = target.getUniqueId();
-
-                                if (instance.getScoreboardManager().isHidden(uuid)) {
-                                    instance.getScoreboardManager().setHidden(uuid, false);
-                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-others", "The board is now visible to %player%."))
-                                            .replaceAll("%player%", target.getName()));
-                                    target.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-by", "%sender% made your board visible."))
-                                            .replaceAll("%sender%", sender.getName()));
+                                if (target == null) {
+                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
+                                            .replaceAll("%player%", args[1]));
                                 } else {
-                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-others-already", "%player%'s board is already visible."))
-                                            .replaceAll("%player%", target.getName()));
+                                    final UUID uuid = target.getUniqueId();
+
+                                    if (instance.getScoreboardManager().isHidden(uuid)) {
+                                        instance.getScoreboardManager().setHidden(uuid, false);
+                                        sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-others", "The board is now visible to %player%."))
+                                                .replaceAll("%player%", target.getName()));
+                                        target.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-by", "%sender% made your board visible."))
+                                                .replaceAll("%sender%", sender.getName()));
+                                    } else {
+                                        sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-on-others-already", "%player%'s board is already visible."))
+                                                .replaceAll("%player%", target.getName()));
+                                    }
                                 }
+                            } else {
+                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
                             }
                         }
                     } else {
@@ -93,7 +101,7 @@ public class PhantomBoardCommand implements TabExecutor {
                     }
                     break;
                 case "off":
-                    if (sender.hasPermission("phantomboard.toggle")) {
+                    if (sender.hasPermission("phantomboard.toggle") && sender.hasPermission("phantomboard.view")) {
                         if (args.length == 1) {
                             if (sender instanceof Player) {
                                 final Player player = (Player) sender;
@@ -109,24 +117,28 @@ public class PhantomBoardCommand implements TabExecutor {
                                 sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-usage-console", "Usage (console): /board off <player>")));
                             }
                         } else {
-                            final Player target = Bukkit.getPlayer(args[1]);
+                            if (sender.hasPermission("phantomboard.toggle.others")) {
+                                final Player target = Bukkit.getPlayer(args[1]);
 
-                            if (target == null) {
-                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
-                                        .replaceAll("%player%", args[1]));
-                            } else {
-                                final UUID uuid = target.getUniqueId();
-
-                                if (instance.getScoreboardManager().isHidden(uuid)) {
-                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-others-already", "%player%'s board is already hidden."))
-                                            .replaceAll("%player%", target.getName()));
+                                if (target == null) {
+                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("player-not-online", "%player% isn't online."))
+                                            .replaceAll("%player%", args[1]));
                                 } else {
-                                    instance.getScoreboardManager().setHidden(uuid, true);
-                                    sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-others", "The board is now hidden to %player%."))
-                                            .replaceAll("%player%", target.getName()));
-                                    target.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-by", "%sender% made your board hidden."))
-                                            .replaceAll("%sender%", sender.getName()));
+                                    final UUID uuid = target.getUniqueId();
+
+                                    if (instance.getScoreboardManager().isHidden(uuid)) {
+                                        sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-others-already", "%player%'s board is already hidden."))
+                                                .replaceAll("%player%", target.getName()));
+                                    } else {
+                                        instance.getScoreboardManager().setHidden(uuid, true);
+                                        sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-others", "The board is now hidden to %player%."))
+                                                .replaceAll("%player%", target.getName()));
+                                        target.sendMessage(instance.getUtils().colorize(instance.getMessages().get("set-off-by", "%sender% made your board hidden."))
+                                                .replaceAll("%sender%", sender.getName()));
+                                    }
                                 }
+                            } else {
+                                sender.sendMessage(instance.getUtils().colorize(instance.getMessages().get("no-permission", "You don't have access to that.")));
                             }
                         }
                     } else {

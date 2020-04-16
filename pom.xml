@@ -6,7 +6,7 @@
 
     <groupId>io.github.lokka30</groupId>
     <artifactId>PhantomBoard</artifactId>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>1.1.6-SNAPSHOT</version>
 
     <name>PhantomBoard</name>
     <description>A simple PlaceholderAPI scoreboard plugin</description>

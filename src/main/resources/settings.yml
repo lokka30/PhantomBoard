@@ -25,5 +25,8 @@ scoreboard:
   #Having a value too low (1 and 2) with a low player count will cause the board to flicker.
   updatePeriod: 3
 
+#Should the plugin check for updates off the SpigotMC page on startup?
+use-update-checker: true
+
 #File version, do not change unless you have updated the config to such file version.
 file-version: 3
